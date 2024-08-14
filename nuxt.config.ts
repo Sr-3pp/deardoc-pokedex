@@ -7,7 +7,7 @@ export default defineNuxtConfig({
   },
   runtimeConfig: {
     mongo: {
-      url: process.env.MONGO_URL,
+      url: process.env.MONGODB_URI,
       database: process.env.MONGO_DB_NAME,
     },
     jwt: {
