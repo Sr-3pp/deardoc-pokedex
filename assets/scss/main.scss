@@ -1,0 +1,11 @@
+@forward "./functions";
+@forward "./transitions";
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  transition: opacity 0.5s ease;
+}
