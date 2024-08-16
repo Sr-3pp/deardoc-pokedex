@@ -12,7 +12,7 @@ npm install
 # pnpm
 pnpm install --shamefully-hoist
 ```
-## Create an .env file
+## Create a .env file
 you will need to set this variables: <br />
 MONGODB_URI <br />
 JWT_SECRET
