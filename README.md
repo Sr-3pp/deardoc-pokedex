@@ -37,7 +37,7 @@ npm run preview
 
 ## Test Credentials:
 
-test@mail.com - test123.
+test@mail.com - test123. <br />
 admin@mail.com - admin123.
 
 ## Live App
