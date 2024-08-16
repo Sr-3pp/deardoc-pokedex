@@ -52,7 +52,7 @@ admin@mail.com - admin123.
 
 ## Live App
 
-[https://deardoc-pokedex-hewk.vercel.app](https://deardoc-pokedex-hewk.vercel.app)
+[https://sk8it.co](https://sk8it.co)
 
 ---
 
