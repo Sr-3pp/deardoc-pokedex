@@ -1,8 +1,25 @@
-import type { UserType } from "~/types";
+import type { UserInterface } from "~/interfaces";
 
 export default function useAuth() {
-  const user = useState<UserType | null>("user", () => null);
-  const isLoggedIn = useState<boolean>("isLoggedIn", () => false);
+  const storedUser: any = useLocalStorage<UserInterface | null>(
+    "user",
+    () => null
+  );
+  const storedIsLoggedIn = useLocalStorage<boolean>("isLoggedIn", () => false);
+
+  const user = computed({
+    get: () => JSON.parse(storedUser.value),
+    set: (newValue) => {
+      storedUser.value = JSON.stringify(newValue);
+    },
+  });
+
+  const isLoggedIn = computed({
+    get: () => storedIsLoggedIn.value,
+    set: (newValue: boolean) => {
+      storedIsLoggedIn.value = newValue;
+    },
+  });
 
   const login = async ({
     email,
@@ -42,7 +59,7 @@ export default function useAuth() {
         body: { email, password },
       });
 
-      (user as any).value = _user;
+      user.value = _user;
       isLoggedIn.value = true;
 
       navigateTo("/");
@@ -60,5 +77,29 @@ export default function useAuth() {
     navigateTo("/login");
   };
 
-  return { login, register, logout, user, isLoggedIn };
+  const updateFavorites = (pokemon: string, key: string) => {
+    if (!pokemon) return;
+    let favorites = user.value.favorites;
+    if (key === "remove") {
+      favorites = favorites.filter((_pokemon: string) => _pokemon !== pokemon);
+    } else {
+      favorites.push(pokemon);
+    }
+
+    user.value = { ...user.value, favorites };
+
+    $fetch(`/api/users/favs`, {
+      method: "POST",
+      body: user.value,
+    });
+  };
+
+  return {
+    login,
+    register,
+    logout,
+    updateFavorites,
+    user,
+    isLoggedIn,
+  };
 }

@@ -14,6 +14,8 @@ export default defineNuxtConfig({
       secret: process.env.JWT_SECRET,
     },
   },
+  modules: ["@vueuse/nuxt"],
+  css: ["~/assets/scss/global.scss"],
   vite: {
     css: {
       preprocessorOptions: {

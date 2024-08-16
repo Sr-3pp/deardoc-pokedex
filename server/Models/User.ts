@@ -1,8 +1,8 @@
 import mongoose, { Schema } from "mongoose";
 import bcrypt from "mongoose-bcrypt";
-import { UserType } from "~/types";
+import { UserInterface } from "~/interfaces";
 
-const schema: Schema<UserType> = new mongoose.Schema(
+const schema: Schema<UserInterface> = new mongoose.Schema(
   {
     email: { type: String, unique: true },
     password: { type: String, bcrypt: true, select: false },

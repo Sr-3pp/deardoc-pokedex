@@ -1,0 +1,9 @@
+{
+  "border": {
+    "radius": {
+      "soft": ".5rem",
+      "rounded": "1rem",
+      "pill": "9999px"
+    }
+  }
+}

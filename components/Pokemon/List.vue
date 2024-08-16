@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import type { PokemonUrl } from "~/interfaces";
-
 const { pokemons, loadMore } = usePokedex();
 </script>
 
@@ -11,12 +9,10 @@ const { pokemons, loadMore } = usePokedex();
       v-for="pokemon in pokemons"
       :key="pokemon.name"
     >
-      <NuxtLink :to="`/pokemon/${pokemon.name}`">
-        <PokemonCard :pokemonName="pokemon.name" />
-      </NuxtLink>
+      <PokemonCard :pokemonName="pokemon.name" />
     </li>
     <li class="pokemon-list__item more">
-      <button @click="loadMore">Load more</button>
+      <PokemonButton @click="loadMore">Load more</PokemonButton>
     </li>
   </ul>
 </template>
@@ -25,13 +21,20 @@ const { pokemons, loadMore } = usePokedex();
 .pokemon-list {
   display: flex;
   flex-wrap: wrap;
+  justify-content: space-between;
+  padding: 0;
   gap: pxToRem(10);
   list-style: none;
 
   &__item {
     background-color: var(--color-white);
-    border-radius: #{pxToRem(10)};
-    padding: #{pxToRem(10)};
+    border-radius: $borderRadiusRounded;
+    padding: pxToRem(10);
+    width: calc(25% - pxToRem(10));
+
+    .pokemon-card {
+      height: 100%;
+    }
 
     &.more {
       width: 100%;

@@ -3,12 +3,21 @@ import type { Pokemon } from "~/interfaces";
 
 const search = ref("");
 const doSearch = ref(false);
+const searching = ref(false);
 const results = ref<Pokemon[]>([]);
+
+const { getPokemon } = usePokedex();
 
 const searchPokemon = async () => {
   doSearch.value = true;
-  const { data } = await useFetch<Pokemon>(`/api/pokemon/${search.value}`);
-  results.value = data.value ? [data.value] : [];
+  searching.value = true;
+  const data = await getPokemon(search.value);
+  if (data) {
+    results.value = [data];
+  } else {
+    results.value = [];
+  }
+  searching.value = false;
 };
 
 const pokemonDetails = (name: string) => {
@@ -40,8 +49,10 @@ watch(search, () => {
       @keyup.esc="clearSearch"
       :class="{ 'with-results': results.length > 0 }"
     />
-    <button @click="searchPokemon">Search</button>
-    <ul class="searchbar__results" v-if="results.length > 0">
+    <button class="searchbar__button" @click="searchPokemon">
+      <Icon name="search" />
+    </button>
+    <ul class="searchbar__results" v-if="doSearch">
       <li
         class="searchbar__result"
         v-for="pokemon in results"
@@ -55,7 +66,7 @@ watch(search, () => {
           </span>
         </button>
       </li>
-      <li class="searchbar__result" v-else-if="doSearch">
+      <li class="searchbar__result" v-if="!searching && !results.length">
         <span>No results found</span>
       </li>
     </ul>
@@ -71,11 +82,24 @@ watch(search, () => {
   max-width: pxToRem(300);
   margin: 0 auto;
 
+  &__button {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: pxToRem(40);
+    height: pxToRem(40);
+  }
+
   input {
     width: 100%;
-    padding: 10px;
+    padding: pxToRem(10);
+    padding-right: pxToRem(30);
     border: 1px solid #ccc;
-    border-radius: pxToRem(5);
+    border-radius: $borderRadiusSoft;
     &.with-results {
       border-bottom-left-radius: 0;
       border-bottom-right-radius: 0;
@@ -98,12 +122,14 @@ watch(search, () => {
 
   &__result {
     border-bottom: pxToRem(1) solid #ccc;
+    color: $colorTextDark;
 
     &:last-child {
       border-bottom: none;
     }
 
-    button {
+    button,
+    span {
       display: flex;
       align-items: center;
       gap: pxToRem(10);

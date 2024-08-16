@@ -45,4 +45,15 @@ Locally preview production build:
 npm run preview
 ```
 
+## Test Credentials:
+
+test@mail.com - test123.
+admin@mail.com - admin123.
+
+## Live App
+
+[https://deardoc-pokedex-hewk.vercel.app](https://deardoc-pokedex-hewk.vercel.app)
+
+---
+
 Checkout the [deployment documentation](https://nuxt.com/docs/getting-started/deployment#presets) for more information.

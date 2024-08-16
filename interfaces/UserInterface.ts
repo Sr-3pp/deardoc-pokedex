@@ -1,6 +1,4 @@
-import type { Pokemon } from "~/interfaces";
-
-export interface UserType {
+export interface UserInterface {
   [key: string]: string | number | { type: any; unique: boolean } | unknown;
   _id?: string;
   email: string | { type: StringConstructor; unique: true };

@@ -1,20 +1,27 @@
 <script setup lang="ts">
-const { isLoggedIn, user, logout } = useAuth();
+const loading = ref(true);
+provide("loading", loading);
+
+const { hook } = useNuxtApp();
+const { isDarkMode, toggleDarkMode } = useDarkMode();
+
+hook("page:start", () => {
+  loading.value = true;
+});
+
+hook("page:finish", () => {
+  setTimeout(() => {
+    loading.value = false;
+  }, 1000);
+});
 </script>
 
 <template>
-  <main>
-    <template v-if="isLoggedIn">
-      <p>user: {{ user?.email }}</p>
-      <NuxtLink to="/">All</NuxtLink>
-      <NuxtLink to="/favs">My Favs</NuxtLink>
-      <button @click="logout">Logout</button>
-    </template>
-    <template v-else>
-      <NuxtLink to="/">All</NuxtLink>
-      <NuxtLink to="/login">Login</NuxtLink>
-    </template>
-    <SearchBar />
+  <main :class="{ dark: isDarkMode }">
+    <Transition name="fade">
+      <Loader v-if="loading" />
+    </Transition>
+    <Navbar :toggleDarkMode="toggleDarkMode" :isDarkMode="isDarkMode" />
     <NuxtPage />
   </main>
 </template>

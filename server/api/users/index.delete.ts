@@ -1,4 +1,3 @@
-import { UserType } from "~/types";
 import User from "~/server/Models/User";
 
 export default defineEventHandler(async (event) => {

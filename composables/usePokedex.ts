@@ -20,8 +20,12 @@ export default function usePokedex() {
     await getPokemons(next.value);
   };
 
-  const getPokemon = async (name: string) => {
-    return await $fetch(`/api/pokemon/${name}`);
+  const getPokemon = async (name: string): Promise<Pokemon> => {
+    try {
+      return await $fetch(`/api/pokemon/${name}`);
+    } catch (error) {
+      return null as any;
+    }
   };
 
   getPokemons();

@@ -1,11 +1,11 @@
-import type { UserType } from "~/types";
+import type { UserInterface } from "~/interfaces";
 import User from "~/server/Models/User";
 
 export default defineEventHandler(async (event) => {
   const body = await readBody(event);
-  const user: UserType = body;
+  const user: UserInterface = body;
   try {
-    const newUser: UserType = await User.create(user);
+    const newUser: UserInterface = await User.create(user);
     return newUser;
   } catch (error: any) {
     throw createError({
