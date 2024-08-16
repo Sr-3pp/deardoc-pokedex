@@ -47,7 +47,7 @@ const getEffect = (effects: any) => {
       <h2 class="pokemon-info-title">{{ pokemon.name }}</h2>
       <ClientOnly>
         <FavoriteButton
-          :is-favorite="user?.favorites.includes(pokemon.name)"
+          :is-favorite="user?.favorites.includes(pokemon.name) || false"
           :is-logged-in="isLoggedIn"
           @updateFavorites="updateFavorites(pokemon.name, $event)"
         />

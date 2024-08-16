@@ -42,6 +42,11 @@ const getTypesColor = (type: string) => {
 .pokemon-info {
   &-header {
     display: flex;
+    flex-direction: column;
+
+    @media (min-width: 744px) {
+      flex-direction: row;
+    }
   }
 
   &-picture {

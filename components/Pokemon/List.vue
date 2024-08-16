@@ -30,7 +30,14 @@ const { pokemons, loadMore } = usePokedex();
     background-color: var(--color-white);
     border-radius: $borderRadiusRounded;
     padding: pxToRem(10);
-    width: calc(25% - pxToRem(10));
+    width: 100%;
+
+    @media (min-width: 744px) {
+      width: calc(33.33333% - pxToRem(10));
+    }
+    @media (min-width: 1024) {
+      width: calc(25% - pxToRem(10));
+    }
 
     .pokemon-card {
       height: 100%;

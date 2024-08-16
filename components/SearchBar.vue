@@ -79,8 +79,12 @@ watch(search, () => {
   display: flex;
   align-items: center;
   justify-content: center;
-  max-width: pxToRem(300);
   margin: 0 auto;
+  max-width: pxToRem(150);
+
+  @media (min-width: 744px) {
+    max-width: pxToRem(300);
+  }
 
   &__button {
     background-color: transparent;

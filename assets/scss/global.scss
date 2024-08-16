@@ -39,9 +39,25 @@ body {
 }
 
 .container {
-  max-width: 1000px;
   margin: 0 auto;
 
   padding-top: pxToRem(40);
   padding-bottom: pxToRem(40);
+  padding-left: pxToRem(20);
+  padding-right: pxToRem(20);
+
+  max-width: pxToRem(700);
+
+  @media (min-width: 744px) {
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  @media (min-width: 1024px) {
+    max-width: pxToRem(800);
+  }
+
+  @media (min-width: 1280px) {
+    max-width: pxToRem(1200);
+  }
 }

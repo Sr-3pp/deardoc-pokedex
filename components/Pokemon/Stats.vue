@@ -31,15 +31,25 @@ const maxLevel = ref(250);
     list-style: none;
     padding: 0;
     display: flex;
+    flex-wrap: wrap;
     gap: pxToRem(10);
 
     &-item {
-      width: calc(20% - pxToRem(10));
       display: flex;
       flex-direction: column;
       align-items: center;
       gap: pxToRem(10);
       text-transform: capitalize;
+      width: calc(50% - pxToRem(10));
+
+      @media (min-width: 744px) {
+        width: calc(33.33333% - pxToRem(10));
+      }
+
+      @media (min-width: 1024px) {
+        width: calc(33.33333% - pxToRem(10));
+      }
+
       h4 {
         margin: 0;
       }

@@ -22,13 +22,22 @@ defineProps<{
 <style scoped lang="scss">
 .evolution-node {
   display: flex;
+  flex-direction: column;
   align-items: center;
   gap: pxToRem(10);
   width: 100%;
 
+  @media (min-width: 744px) {
+    flex-direction: row;
+  }
+
   &-current {
-    width: pxToRem(200);
+    width: pxToRem(150);
     flex-shrink: 0;
+
+    @media (min-width: 1024px) {
+      width: pxToRem(200);
+    }
   }
 }
 

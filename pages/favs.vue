@@ -36,7 +36,15 @@ definePageMeta({
   padding: 0;
   margin: 0;
   &-item {
-    width: calc(25% - pxToRem(10));
+    width: 100%;
+
+    @media (min-width: 744px) {
+      width: calc(33.33333% - pxToRem(10));
+    }
+
+    @media (min-width: 1024px) {
+      width: calc(25% - pxToRem(10));
+    }
   }
 }
 </style>

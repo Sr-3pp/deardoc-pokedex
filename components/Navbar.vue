@@ -43,12 +43,16 @@ defineProps<{
         </template>
       </client-only>
       <SearchBar />
-      <PokemonButton @click="toggleDarkMode">
-        {{ isDarkMode ? "Light" : "Dark" }}
-      </PokemonButton>
-      <client-only>
-        <PokemonButton v-if="isLoggedIn" @click="logout">Logout</PokemonButton>
-      </client-only>
+      <div class="navbar-nav-actions">
+        <PokemonButton @click="toggleDarkMode">
+          {{ isDarkMode ? "Light" : "Dark" }}
+        </PokemonButton>
+        <client-only>
+          <PokemonButton v-if="isLoggedIn" @click="logout"
+            >Logout</PokemonButton
+          >
+        </client-only>
+      </div>
     </nav>
   </header>
 </template>
@@ -79,9 +83,17 @@ defineProps<{
     display: flex;
     justify-content: space-between;
     align-items: center;
-    gap: pxToRem(16);
+    flex-direction: column;
     padding-left: pxToRem(16);
     padding-right: pxToRem(16);
+    padding-bottom: pxToRem(8);
+    gap: pxToRem(8);
+
+    @media (min-width: 744px) {
+      flex-direction: row;
+      padding-bottom: 0;
+      gap: pxToRem(16);
+    }
   }
 
   &-nav-list {
@@ -103,9 +115,24 @@ defineProps<{
     }
   }
 
+  &-nav-actions {
+    display: flex;
+    gap: pxToRem(16);
+    order: 2;
+
+    @media (min-width: 744px) {
+      order: 3;
+    }
+  }
+
   .searchbar {
     width: 50%;
     min-width: pxToRem(350);
+    order: 3;
+
+    @media (min-width: 744px) {
+      order: 2;
+    }
   }
 }
 </style>
