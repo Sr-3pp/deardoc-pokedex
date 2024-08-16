@@ -49,12 +49,12 @@ watch(search, () => {
       @keyup.esc="clearSearch"
       :class="{ 'with-results': results.length > 0 }"
     />
-    <button class="searchbar__button" @click="searchPokemon">
+    <button class="searchbar-button" @click="searchPokemon">
       <Icon name="search" />
     </button>
-    <ul class="searchbar__results" v-if="doSearch">
+    <ul class="searchbar-results" v-if="doSearch">
       <li
-        class="searchbar__result"
+        class="searchbar-result"
         v-for="pokemon in results"
         :key="pokemon.name"
         v-if="results.length > 0 && doSearch"
@@ -66,7 +66,7 @@ watch(search, () => {
           </span>
         </button>
       </li>
-      <li class="searchbar__result" v-if="!searching && !results.length">
+      <li class="searchbar-result" v-if="!searching && !results.length">
         <span>No results found</span>
       </li>
     </ul>
@@ -86,7 +86,7 @@ watch(search, () => {
     max-width: pxToRem(300);
   }
 
-  &__button {
+  &-button {
     background-color: transparent;
     border: none;
     cursor: pointer;
@@ -110,7 +110,7 @@ watch(search, () => {
     }
   }
 
-  &__results {
+  &-results {
     position: absolute;
     top: 100%;
     left: 0;
@@ -124,7 +124,7 @@ watch(search, () => {
     border-bottom-right-radius: pxToRem(5);
   }
 
-  &__result {
+  &-result {
     border-bottom: pxToRem(1) solid #ccc;
     color: $colorTextDark;
 

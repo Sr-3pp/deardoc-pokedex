@@ -38,17 +38,17 @@ const favoriteHandler = (event: "add" | "remove") => {
     }`"
   >
     <img
-      class="pokemon-card__image"
+      class="pokemon-card-image"
       :src="pokemon.sprites.other.showdown.front_default"
       alt="pokemon"
     />
-    <h2 class="pokemon-card__name">{{ pokemon.name }}</h2>
+    <h2 class="pokemon-card-name">{{ pokemon.name }}</h2>
     <FavoriteButton
       :is-favorite="isFavorite"
       :is-logged-in="isLoggedIn"
       @update-favorites="favoriteHandler"
     />
-    <NuxtLink class="pokemon-card__more-info" :to="`/pokemon/${pokemon.name}`">
+    <NuxtLink class="pokemon-card-more-info" :to="`/pokemon/${pokemon.name}`">
       More info
     </NuxtLink>
   </article>
@@ -73,18 +73,18 @@ const favoriteHandler = (event: "add" | "remove") => {
     transform: scale(1.05) translateY(-5px);
   }
 
-  &__image {
+  &-image {
     height: pxToRem(60);
     object-fit: cover;
     margin-bottom: pxToRem(10);
   }
 
-  &__name {
+  &-name {
     text-transform: capitalize;
     margin-top: 0;
     color: $colorTextLight;
   }
-  &__more-info {
+  &-more-info {
     margin-top: auto;
     background-color: $colorPokemonRed;
     color: #fff;

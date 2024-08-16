@@ -5,13 +5,13 @@ const { pokemons, loadMore } = usePokedex();
 <template>
   <ul class="pokemon-list">
     <li
-      class="pokemon-list__item"
+      class="pokemon-list-item"
       v-for="pokemon in pokemons"
       :key="pokemon.name"
     >
       <PokemonCard :pokemonName="pokemon.name" />
     </li>
-    <li class="pokemon-list__item more">
+    <li class="pokemon-list-item more">
       <PokemonButton @click="loadMore">Load more</PokemonButton>
     </li>
   </ul>
@@ -26,7 +26,7 @@ const { pokemons, loadMore } = usePokedex();
   gap: pxToRem(10);
   list-style: none;
 
-  &__item {
+  &-item {
     background-color: var(--color-white);
     border-radius: $borderRadiusRounded;
     padding: pxToRem(10);

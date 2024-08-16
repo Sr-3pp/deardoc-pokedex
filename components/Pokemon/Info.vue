@@ -82,7 +82,7 @@ const getEffect = (effects: any) => {
     <h3>Types:</h3>
     <ul class="pokemon-info-types">
       <li
-        class="pokemon-info-types__type"
+        class="pokemon-info-types-type"
         :style="{ '--background-color': getTypesColor(type.type.name) }"
         v-for="type in pokemon.types"
         :key="type.type.name"
@@ -119,7 +119,7 @@ const getEffect = (effects: any) => {
       }
     }
 
-    &__type {
+    &-type {
       background-color: var(--background-color);
       border-radius: $borderRadiusSoft;
       color: $colorTextLight;
