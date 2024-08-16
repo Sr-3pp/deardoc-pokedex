@@ -58,6 +58,11 @@ const getTypesColor = (type: string) => {
       $colorBackgroundLight 68%
     );
     border-radius: $borderRadiusPill;
+
+    img {
+      width: 100%;
+      height: auto;
+    }
     .favorite {
       position: absolute;
       top: 0;
